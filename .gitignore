@@ -12,3 +12,4 @@ Web/assets/img/raw/
 .DS_Store
 Thumbs.db
 *.log
+.vercel
