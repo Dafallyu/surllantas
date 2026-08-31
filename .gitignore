@@ -1,0 +1,14 @@
+﻿# Vercel
+.vercel
+.env.local
+.env*.local
+
+# Raw camera images
+Web/assets/img/raw/
+**/assets/img/raw/
+*.dng
+
+# Logs & OS
+.DS_Store
+Thumbs.db
+*.log

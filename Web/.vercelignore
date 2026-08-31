@@ -1,0 +1,6 @@
+﻿assets/img/raw
+assets/img/raw/*
+procesar_fotos.py
+*.ps1
+scratch/
+.git
