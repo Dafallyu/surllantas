@@ -81,7 +81,7 @@
         <a href="contacto.html" class="navbar__link">Contacto</a>
       </nav>
 
-      <button class="navbar__toggle" aria-label="Abrir menú de navegación móvil">
+      <button class="navbar__toggle" aria-label="Abrir menú de navegación móvil" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -99,9 +99,12 @@
     </div>
   </aside>
 
+  <!-- MAIN CONTENT CONTAINER (SEMANTIC & ACCESSIBLE) -->
+  <main id="main-content">
+
   <!-- HERO SECTION -->
   <section class="hero">
-    <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600&auto=format&fit=crop" alt="Llantas de alta resistencia Sur Llantas Tarija" class="hero__bg" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600&auto=format&fit=crop" alt="Llantas de alta resistencia Sur Llantas Tarija" class="hero__bg" fetchpriority="high" decoding="async">
     <div class="hero__overlay"></div>
     <div class="container hero__content reveal">
       <div class="badge badge--red hero__badge">
@@ -144,6 +147,71 @@
           <div class="hero-feat__icon">✓</div>
           <div class="hero-feat__text">Precios Competitivos Directos</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTOR RÁPIDO DE MEDIDAS (COTIZADOR EXPRESS A WHATSAPP) -->
+  <section class="section-quote-bar" aria-label="Cotizador rápido de llantas por medida">
+    <div class="container">
+      <div class="quote-bar-card reveal">
+        <div class="quote-bar-header">
+          <div class="badge badge--red quote-bar-header__badge">Cotización Inmediata</div>
+          <h2 class="quote-bar-header__title">¿Buscas una medida específica?</h2>
+          <p class="quote-bar-header__desc">Selecciona tu vehículo, escribe la medida requerida y consulta disponibilidad y precios al instante vía WhatsApp.</p>
+        </div>
+
+        <form id="tireQuoteForm" class="quote-bar-form" novalidate>
+          <div class="quote-form-group">
+            <label for="quoteVehicle" class="quote-form-label">Tipo de Vehículo</label>
+            <div class="quote-select-wrapper">
+              <select id="quoteVehicle" name="vehicle" class="quote-form-select" required>
+                <option value="Automóvil" selected>Automóvil</option>
+                <option value="Camioneta / 4x4">Camioneta / 4x4</option>
+                <option value="Camión / Transporte Pesado">Camión / Transporte Pesado</option>
+                <option value="Motocicleta">Motocicleta</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="quote-form-group">
+            <label for="quoteSize" class="quote-form-label">Medida de Llanta *</label>
+            <input 
+              type="text" 
+              id="quoteSize" 
+              name="size" 
+              class="quote-form-input" 
+              placeholder="Ej: 205/55 R16 o 295/80 R22.5" 
+              required
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="quote-form-group">
+            <label for="quoteBrand" class="quote-form-label">Marca Preferida</label>
+            <div class="quote-select-wrapper">
+              <select id="quoteBrand" name="brand" class="quote-form-select">
+                <option value="Cualquier marca recomendada" selected>Cualquier marca recomendada</option>
+                <option value="Roadone (Marca Estrella)">Roadone (Marca Estrella)</option>
+                <option value="Goodyear">Goodyear</option>
+                <option value="Bridgestone">Bridgestone</option>
+                <option value="Dunlop">Dunlop</option>
+                <option value="Roadcruza">Roadcruza</option>
+                <option value="Condor">Condor</option>
+                <option value="Triangle">Triangle</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="quote-form-group quote-form-group--submit">
+            <button type="submit" class="btn btn--primary btn--quote-submit" aria-label="Consultar stock de llantas por WhatsApp">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
+              </svg>
+              <span>Consultar Stock</span>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -471,6 +539,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">

@@ -41,7 +41,7 @@
         <a href="contacto.html" class="navbar__link active">Contacto</a>
       </nav>
 
-      <button class="navbar__toggle" aria-label="Abrir menú de navegación móvil">
+      <button class="navbar__toggle" aria-label="Abrir menú de navegación móvil" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -58,111 +58,116 @@
     </div>
   </aside>
 
-  <!-- PAGE HEADER -->
-  <header class="page-header">
-    <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600&auto=format&fit=crop" alt="Local Sur Llantas en Tarija" class="page-header__bg" loading="lazy">
-    <div class="container page-header__content reveal">
-      <div class="badge badge--red" style="margin-bottom: 1rem;">Atención Directa</div>
-      <h1 class="heading-xl page-header__title">Contáctanos</h1>
-      <p class="page-header__desc">
-        Ponte en contacto directo con nuestro equipo comercial a través de WhatsApp o visítanos en nuestro local central en Tarija.
-      </p>
-    </div>
-  </header>
+  <!-- MAIN CONTENT CONTAINER (SEMANTIC & ACCESSIBLE) -->
+  <main id="main-content">
 
-  <!-- CONTACT CONTENT SECTION (TWO-COLUMN DESKTOP LAYOUT) -->
-  <section class="section-contact-content">
-    <div class="container">
-      <div class="location-grid">
-        
-        <!-- Left Column: Information & Large WhatsApp Buttons -->
-        <div class="contact-cards-col reveal">
-          <div style="background-color: var(--bg-primary); padding: 2.5rem; border-radius: var(--radius-md); border: 1px solid var(--border-light); box-shadow: var(--shadow-sm); height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-            <div>
-              <div class="badge badge--red" style="margin-bottom: 1rem;">Ubicación y Horarios</div>
-              <h2 class="heading-md" style="margin-bottom: 1.5rem;">Información del Local Central</h2>
-              
-              <div class="location-detail">
-                <div class="location-detail__icon">
-                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                    <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
+    <!-- PAGE HEADER -->
+    <section class="page-header" aria-labelledby="page-title">
+      <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600&auto=format&fit=crop" alt="Local Sur Llantas en Tarija" class="page-header__bg" fetchpriority="high" decoding="async">
+      <div class="container page-header__content reveal">
+        <div class="badge badge--red contact-card__badge">Atención Directa</div>
+        <h1 class="heading-xl page-header__title" id="page-title">Contáctanos</h1>
+        <p class="page-header__desc">
+          Ponte en contacto directo con nuestro equipo comercial a través de WhatsApp o visítanos en nuestro local central en Tarija.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT CONTENT SECTION (TWO-COLUMN DESKTOP LAYOUT) -->
+    <section class="section-contact-content">
+      <div class="container">
+        <div class="location-grid">
+          
+          <!-- Left Column: Information & Large WhatsApp Buttons -->
+          <div class="contact-cards-col reveal">
+            <div class="contact-card contact-card--featured">
+              <div>
+                <div class="badge badge--red contact-card__badge">Ubicación y Horarios</div>
+                <h2 class="heading-md contact-card__heading">Información del Local Central</h2>
+                
+                <div class="location-detail">
+                  <div class="location-detail__icon">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                      <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="location-detail__title">Dirección Completa</h3>
+                    <p class="location-detail__text">
+                      Av. Froilán Tejerina esquina Regimiento Campos<br>
+                      <strong>Tarija, Bolivia</strong>
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 class="location-detail__title">Dirección Completa</h3>
-                  <p class="location-detail__text">
-                    Av. Froilán Tejerina esquina Regimiento Campos<br>
-                    <strong>Tarija, Bolivia</strong>
-                  </p>
+
+                <div class="location-detail location-detail--spaced">
+                  <div class="location-detail__icon">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="location-detail__title">Horario de Atención</h3>
+                    <p class="location-detail__text">
+                      <strong>Lunes a Sábado:</strong> 8:00 a 12:50 y 13:30 a 20:00<br>
+                      <strong>Domingos:</strong> Cerrado
+                    </p>
+                  </div>
                 </div>
+
+                <!-- Integrated Google Maps Compact CTA -->
+                <div class="contact-card__maps-cta">
+                  <a href="https://www.google.com/maps/search/?api=1&query=-21.5121685,-64.7354856" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="Abrir ubicación de Sur Llantas en Google Maps">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                    Abrir en Google Maps →
+                  </a>
+                </div>
+
+                <hr class="contact-card__divider">
+
+                <h3 class="heading-md contact-card__subheading">Consultas Directas por WhatsApp</h3>
+                <p class="contact-card__lead">
+                  Selecciona la línea de tu preferencia para iniciar chat directo y consultar stock inmediato:
+                </p>
               </div>
 
-              <div class="location-detail" style="margin-bottom: 1.25rem;">
-                <div class="location-detail__icon">
-                  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <div>
+                <!-- Large WhatsApp Button Line 1 -->
+                <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--primary btn--wa-full" aria-label="Escribir por WhatsApp a Línea 1 +591 72960725">
+                  <svg class="btn--wa-full__icon" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
                   </svg>
-                </div>
-                <div>
-                  <h3 class="location-detail__title">Horario de Atención</h3>
-                  <p class="location-detail__text">
-                    <strong>Lunes a Sábado:</strong> 8:00 a 12:50 y 13:30 a 20:00<br>
-                    <strong>Domingos:</strong> Cerrado
-                  </p>
-                </div>
-              </div>
+                  <div class="wa-btn-content">
+                    <span class="wa-btn-content__label">Línea 1 — Principal</span>
+                    <span class="wa-btn-content__phone">+591 72960725</span>
+                  </div>
+                </a>
 
-              <!-- Integrated Google Maps Compact CTA -->
-              <div style="margin-bottom: 2rem;">
-                <a href="https://www.google.com/maps/search/?api=1&query=-21.5121685,-64.7354856" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm" aria-label="Abrir ubicación de Sur Llantas en Google Maps">
-                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  Abrir en Google Maps →
+                <!-- Large WhatsApp Button Line 2 -->
+                <a href="https://wa.me/59168687118?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--primary btn--wa-full btn--wa-full--alt" aria-label="Escribir por WhatsApp a Línea 2 +591 68687118">
+                  <svg class="btn--wa-full__icon" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
+                  </svg>
+                  <div class="wa-btn-content">
+                    <span class="wa-btn-content__label">Línea 2 — Alternativa</span>
+                    <span class="wa-btn-content__phone">+591 68687118</span>
+                  </div>
                 </a>
               </div>
-
-              <hr style="border: none; border-top: 1px dashed var(--border-light); margin-bottom: 1.5rem;">
-
-              <h3 class="heading-md" style="margin-bottom: 0.5rem;">Consultas Directas por WhatsApp</h3>
-              <p style="color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.25rem;">
-                Selecciona la línea de tu preferencia para iniciar chat directo y consultar stock inmediato:
-              </p>
-            </div>
-
-            <div>
-              <!-- Large WhatsApp Button Line 1 -->
-              <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--primary btn--lg" style="width: 100%; margin-bottom: 1rem; justify-content: flex-start; padding: 1rem 1.25rem; font-size: 1rem;" aria-label="Escribir por WhatsApp a Línea 1 +591 72960725">
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink: 0;">
-                  <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
-                </svg>
-                <div style="text-align: left; margin-left: 0.5rem;">
-                  <div style="font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.03em;">Línea 1 — Principal</div>
-                  <div style="font-weight: 800;">+591 72960725</div>
-                </div>
-              </a>
-
-              <!-- Large WhatsApp Button Line 2 -->
-              <a href="https://wa.me/59168687118?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--primary btn--lg" style="width: 100%; justify-content: flex-start; padding: 1rem 1.25rem; font-size: 1rem;" aria-label="Escribir por WhatsApp a Línea 2 +591 68687118">
-                <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" style="flex-shrink: 0;">
-                  <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
-                </svg>
-                <div style="text-align: left; margin-left: 0.5rem;">
-                  <div style="font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.03em;">Línea 2 — Alternativa</div>
-                  <div style="font-weight: 800;">+591 68687118</div>
-                </div>
-              </a>
             </div>
           </div>
-        </div>
 
-        <!-- Right Column: Embedded Google Maps Iframe -->
-        <div class="map-container reveal" style="min-height: 520px; height: 100%;">
-          <iframe src="https://maps.google.com/maps?q=-21.5121685,-64.7354856&hl=es&z=17&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Google Maps Sur Llantas Tarija"></iframe>
-        </div>
+          <!-- Right Column: Embedded Google Maps Iframe -->
+          <div class="map-container reveal">
+            <iframe src="https://maps.google.com/maps?q=-21.5121685,-64.7354856&hl=es&z=17&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Ubicación Google Maps Sur Llantas Tarija"></iframe>
+          </div>
 
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">

@@ -41,7 +41,7 @@
         <a href="contacto.html" class="navbar__link">Contacto</a>
       </nav>
 
-      <button class="navbar__toggle" aria-label="Abrir menú de navegación móvil">
+      <button class="navbar__toggle" aria-label="Abrir menú de navegación móvil" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -59,17 +59,20 @@
     </div>
   </aside>
 
-  <!-- PAGE HEADER -->
-  <header class="page-header">
-    <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600&auto=format&fit=crop" alt="Trayectoria Sur Llantas en Tarija" class="page-header__bg" loading="lazy">
-    <div class="container page-header__content reveal">
-      <div class="badge badge--red" style="margin-bottom: 1rem;">Nuestra Trayectoria</div>
-      <h1 class="heading-xl page-header__title">Nuestra Historia</h1>
-      <p class="page-header__desc">
-        Desde 2001 construyendo relaciones de confianza con los conductores, transportistas y empresas de Tarija y la región.
-      </p>
-    </div>
-  </header>
+  <!-- MAIN CONTENT CONTAINER (SEMANTIC & ACCESSIBLE) -->
+  <main id="main-content">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header" aria-labelledby="page-title">
+      <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=1600&auto=format&fit=crop" alt="Trayectoria Sur Llantas en Tarija" class="page-header__bg" fetchpriority="high" decoding="async">
+      <div class="container page-header__content reveal">
+        <div class="badge badge--red" style="margin-bottom: 1rem;">Nuestra Trayectoria</div>
+        <h1 class="heading-xl page-header__title" id="page-title">Nuestra Historia</h1>
+        <p class="page-header__desc">
+          Desde 2001 construyendo relaciones de confianza con los conductores, transportistas y empresas de Tarija y la región.
+        </p>
+      </div>
+    </section>
 
   <!-- STATS & TIMELINE -->
   <section class="section-history">
@@ -252,8 +255,8 @@
           Conoce nuestro catálogo completo o contáctanos por WhatsApp para consultar precios y stock de tu medida.
         </p>
         <div class="cta-box__actions">
-          <a href="catalogo.html" class="btn btn--primary btn--lg">
-            Explorar Catálogo de Llantas
+          <a href="index.html#lineas" class="btn btn--primary btn--lg">
+            Ver Líneas de Llantas
           </a>
           <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--outline-white btn--lg" aria-label="Escribir por WhatsApp">
             Escribir por WhatsApp
@@ -262,6 +265,8 @@
       </div>
     </div>
   </section>
+
+  </main>
 
   <!-- FOOTER -->
   <footer class="footer">

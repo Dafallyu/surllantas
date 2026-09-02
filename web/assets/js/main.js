@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaqAccordion();
   initCatalogFilters();
   initWhatsAppWidget();
+  initTireQuoteWidget();
 });
 
 /* --------------------------------------------------------------------------
@@ -43,10 +44,14 @@ function initMobileMenu() {
 
   if (!toggleBtn || !mobileMenu) return;
 
+  // Initialize accessibility attributes
+  toggleBtn.setAttribute('aria-expanded', 'false');
+
   const toggleMenu = (open) => {
     const isOpen = open !== undefined ? open : !mobileMenu.classList.contains('open');
     mobileMenu.classList.toggle('open', isOpen);
     if (overlay) overlay.classList.toggle('open', isOpen);
+    toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     document.body.style.overflow = isOpen ? 'hidden' : '';
   };
 
@@ -55,6 +60,12 @@ function initMobileMenu() {
 
   mobileLinks.forEach(link => {
     link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+      toggleMenu(false);
+    }
   });
 }
 
@@ -219,5 +230,49 @@ function initWhatsAppWidget() {
     if (e.key === 'Escape' && popup.classList.contains('active')) {
       togglePopup(false);
     }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   8. TIRE QUOTE SELECTOR WIDGET (WHATSAPP CONVERSION)
+   -------------------------------------------------------------------------- */
+function initTireQuoteWidget() {
+  const quoteForm = document.getElementById('tireQuoteForm');
+  if (!quoteForm) return;
+
+  quoteForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const vehicleSelect = document.getElementById('quoteVehicle');
+    const sizeInput = document.getElementById('quoteSize');
+    const brandSelect = document.getElementById('quoteBrand');
+
+    const vehicle = vehicleSelect ? vehicleSelect.value.trim() : 'Automóvil';
+    const size = sizeInput ? sizeInput.value.trim() : '';
+    const brand = brandSelect ? brandSelect.value.trim() : 'Cualquier marca recomendada';
+
+    // Validate size
+    if (!size) {
+      if (sizeInput) {
+        sizeInput.focus();
+        sizeInput.style.borderColor = 'var(--color-rojo)';
+        sizeInput.setAttribute('aria-invalid', 'true');
+        setTimeout(() => {
+          sizeInput.style.borderColor = '';
+          sizeInput.removeAttribute('aria-invalid');
+        }, 2500);
+      }
+      return;
+    }
+
+    // Build friendly, preformatted WhatsApp query
+    let message = `Hola Sur Llantas, quiero consultar stock y disponibilidad de llantas:\n\n`;
+    message += `🚗 Tipo de Vehículo: ${vehicle}\n`;
+    message += `📏 Medida solicitada: ${size}\n`;
+    message += `🏷️ Marca preferida: ${brand}\n\n`;
+    message += `¿Tienen stock inmediato y cuál sería el precio? Gracias.`;
+
+    const waUrl = `https://wa.me/59172960725?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   });
 }
