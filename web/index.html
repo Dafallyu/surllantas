@@ -374,8 +374,185 @@
             </div>
           </div>
 
-          <div class="brand-banner__media">
-            <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1200&auto=format&fit=crop" alt="Llantas Roadone para camión y transporte pesado en Tarija" class="brand-banner__img" loading="lazy">
+          <div class="brand-banner__media roadone-slider-wrapper">
+            
+            <!-- Angle Switcher: 45° vs Frente -->
+            <div class="roadone-angle-toggle" role="group" aria-label="Cambiar ángulo de visualización de llantas">
+              <span class="roadone-angle-toggle__label">Vista:</span>
+              <div class="roadone-angle-toggle__pills">
+                <button type="button" class="roadone-angle-btn active" data-angle="45" aria-pressed="true">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zm0 9l-10 5 10 5 10-5-10-5z"/></svg>
+                  Vista 45°
+                </button>
+                <button type="button" class="roadone-angle-btn" data-angle="frente" aria-pressed="false">
+                  <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+                  Vista Frontal
+                </button>
+              </div>
+            </div>
+
+            <!-- Slider Viewport & Slides Track -->
+            <div class="roadone-slider" id="roadoneSlider" aria-roledescription="carrusel" aria-label="Catálogo de modelos Roadone en stock">
+              <div class="roadone-slider__track" id="roadoneSliderTrack">
+
+                <!-- Slide 1: RD537 -->
+                <div class="roadone-card active" data-model="RD537" data-size="315/80R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-rd537-45.webp" alt="Llanta Roadone RD537 315/80R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-rd537-frente.webp" alt="Llanta Roadone RD537 315/80R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE RD537</span>
+                    <span class="roadone-card__size">315/80 R22.5</span>
+                    <span class="roadone-card__use">Tracción y Carga Pesada</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20RD537%20medida%20315/80R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone RD537 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 2: HF31 -->
+                <div class="roadone-card" data-model="HF31" data-size="315/80R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-hf31-45.webp" alt="Llanta Roadone HF31 315/80R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-hf31-frente.webp" alt="Llanta Roadone HF31 315/80R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE HF31</span>
+                    <span class="roadone-card__size">315/80 R22.5</span>
+                    <span class="roadone-card__use">Toda Posición / Larga Distancia</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20HF31%20medida%20315/80R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone HF31 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 3: QA919 -->
+                <div class="roadone-card" data-model="QA919" data-size="12R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-qa919-45.webp" alt="Llanta Roadone QA919 12R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-qa919-frente.webp" alt="Llanta Roadone QA919 12R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE QA919</span>
+                    <span class="roadone-card__size">12 R22.5</span>
+                    <span class="roadone-card__use">Mixto / Obra y Carretera</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20QA919%20medida%2012R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone QA919 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 4: RD35 -->
+                <div class="roadone-card" data-model="RD35" data-size="295/80R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-rd35-45.webp" alt="Llanta Roadone RD35 295/80R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-rd35-frente.webp" alt="Llanta Roadone RD35 295/80R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE RD35</span>
+                    <span class="roadone-card__size">295/80 R22.5</span>
+                    <span class="roadone-card__use">Tracción de Gran Agarre</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20RD35%20medida%20295/80R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone RD35 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 5: HF81 -->
+                <div class="roadone-card" data-model="HF81" data-size="315/80R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-hf81-45.webp" alt="Llanta Roadone HF81 315/80R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-hf81-frente.webp" alt="Llanta Roadone HF81 315/80R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE HF81</span>
+                    <span class="roadone-card__size">315/80 R22.5</span>
+                    <span class="roadone-card__use">Dirección y Pavimento</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20HF81%20medida%20315/80R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone HF81 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 6: HF82+ -->
+                <div class="roadone-card" data-model="HF82+" data-size="275/80R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-hf82plus-45.webp" alt="Llanta Roadone HF82+ 275/80R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-hf82plus-frente.webp" alt="Llanta Roadone HF82+ 275/80R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE HF82+</span>
+                    <span class="roadone-card__size">275/80 R22.5</span>
+                    <span class="roadone-card__use">Transporte Regional y Urbano</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20HF82+%20medida%20275/80R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone HF82+ por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 7: HD55 -->
+                <div class="roadone-card" data-model="HD55" data-size="315/70R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-hd55-45.webp" alt="Llanta Roadone HD55 315/70R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-hd55-frente.webp" alt="Llanta Roadone HD55 315/70R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE HD55</span>
+                    <span class="roadone-card__size">315/70 R22.5</span>
+                    <span class="roadone-card__use">Tracción y Eficiencia</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20HD55%20medida%20315/70R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone HD55 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 8: HF281 -->
+                <div class="roadone-card" data-model="HF281" data-size="385/55R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-hf281-45.webp" alt="Llanta Roadone HF281 385/55R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-hf281-frente.webp" alt="Llanta Roadone HF281 385/55R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE HF281</span>
+                    <span class="roadone-card__size">385/55 R22.5</span>
+                    <span class="roadone-card__use">Super Single / Plataforma</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20HF281%20medida%20385/55R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone HF281 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+                <!-- Slide 9: RA36 -->
+                <div class="roadone-card" data-model="RA36" data-size="385/65R22.5">
+                  <div class="roadone-card__visual">
+                    <img src="assets/img/productos/roadone-ra36-45.webp" alt="Llanta Roadone RA36 385/65R22.5 vista 45 grados" class="roadone-card__img roadone-card__img--45" loading="lazy">
+                    <img src="assets/img/productos/roadone-ra36-frente.webp" alt="Llanta Roadone RA36 385/65R22.5 vista frontal" class="roadone-card__img roadone-card__img--frente" style="display:none;" loading="lazy">
+                  </div>
+                  <div class="roadone-card__meta">
+                    <span class="roadone-card__badge">ROADONE RA36</span>
+                    <span class="roadone-card__size">385/65 R22.5</span>
+                    <span class="roadone-card__use">Remolque y Eje Libre</span>
+                  </div>
+                  <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20precio%20y%20stock%20del%20modelo%20Roadone%20RA36%20medida%20385/65R22.5" target="_blank" class="btn btn--primary btn--sm roadone-card__btn" aria-label="Cotizar Roadone RA36 por WhatsApp">
+                    Cotizar este Modelo →
+                  </a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <button type="button" class="roadone-slider__arrow roadone-slider__arrow--prev" id="roadonePrev" aria-label="Ver modelo Roadone anterior">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button type="button" class="roadone-slider__arrow roadone-slider__arrow--next" id="roadoneNext" aria-label="Ver modelo Roadone siguiente">
+              <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+
+            <!-- Dots Pagination -->
+            <div class="roadone-slider__dots" id="roadoneDots" role="tablist" aria-label="Seleccionar modelo Roadone"></div>
+
           </div>
         </div>
       </div>

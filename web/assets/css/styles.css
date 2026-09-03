@@ -923,22 +923,240 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.7;
 }
 
-.brand-banner__media {
+/* --------------------------------------------------------------------------
+   8.1. ROADONE INTERACTIVE TIRE CAROUSEL (45° & FRONT VIEW)
+   -------------------------------------------------------------------------- */
+.brand-banner__media.roadone-slider-wrapper {
   position: relative;
   height: 100%;
-  min-height: 380px;
-  background-color: var(--bg-dark-deep);
+  min-height: 480px;
+  background: radial-gradient(circle at center, #240809 0%, #070A12 75%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 1.25rem 1.25rem;
+  overflow: hidden;
+  user-select: none;
+}
+
+.roadone-angle-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.35rem 0.5rem 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  z-index: 6;
+  backdrop-filter: blur(6px);
+  margin-bottom: 0.5rem;
+}
+
+.roadone-angle-toggle__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-amarillo);
+}
+
+.roadone-angle-toggle__pills {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.roadone-angle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: transparent;
+  border: none;
+  color: var(--text-white-muted);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.roadone-angle-btn svg {
+  flex-shrink: 0;
+}
+
+.roadone-angle-btn:hover {
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.roadone-angle-btn.active {
+  background-color: var(--color-rojo);
+  color: var(--text-white);
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.4);
+}
+
+.roadone-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.roadone-slider__track {
+  display: flex;
+  width: 100%;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.roadone-card {
+  flex: 0 0 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  opacity: 0.4;
+  transform: scale(0.92);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.roadone-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.roadone-card__visual {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  margin-bottom: 0.85rem;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.65));
 }
 
-.brand-banner__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.85;
+.roadone-card__img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  transition: opacity 0.25s ease, transform 0.3s ease;
+  animation: tireFadeIn 0.35s ease forwards;
+}
+
+@keyframes tireFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.roadone-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.roadone-card__badge {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: -0.01em;
+}
+
+.roadone-card__size {
+  display: inline-block;
+  background: rgba(245, 179, 1, 0.15);
+  color: var(--color-amarillo);
+  padding: 0.15rem 0.65rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+}
+
+.roadone-card__use {
+  font-size: 0.82rem;
+  color: var(--text-white-muted);
+}
+
+.roadone-card__btn {
+  font-size: 0.84rem;
+  padding: 0.5rem 1.1rem;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+}
+
+.roadone-slider__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(11, 15, 25, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.roadone-slider__arrow:hover {
+  background-color: var(--color-rojo);
+  border-color: var(--color-rojo);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.5);
+}
+
+.roadone-slider__arrow--prev {
+  left: 0.5rem;
+}
+
+.roadone-slider__arrow--next {
+  right: 0.5rem;
+}
+
+.roadone-slider__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  z-index: 5;
+  margin-top: 0.5rem;
+}
+
+.roadone-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.roadone-dot.active {
+  width: 22px;
+  border-radius: 4px;
+  background-color: var(--color-rojo);
 }
 
 /* Brand Logo Strip */
@@ -1904,7 +2122,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .brand-banner__media {
-    min-height: 280px;
+    min-height: 480px;
   }
 
   .footer-grid {

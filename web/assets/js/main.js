@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCatalogFilters();
   initWhatsAppWidget();
   initTireQuoteWidget();
+  initRoadoneSlider();
 });
 
 /* --------------------------------------------------------------------------
@@ -275,4 +276,175 @@ function initTireQuoteWidget() {
     const waUrl = `https://wa.me/59172960725?text=${encodeURIComponent(message)}`;
     window.open(waUrl, '_blank', 'noopener,noreferrer');
   });
+}
+
+/* --------------------------------------------------------------------------
+   9. ROADONE INTERACTIVE TIRE SLIDER (45° / FRONT VIEW TOGGLE + SLIDER)
+   -------------------------------------------------------------------------- */
+function initRoadoneSlider() {
+  const slider = document.getElementById('roadoneSlider');
+  const track = document.getElementById('roadoneSliderTrack');
+  const prevBtn = document.getElementById('roadonePrev');
+  const nextBtn = document.getElementById('roadoneNext');
+  const dotsContainer = document.getElementById('roadoneDots');
+  const angleBtns = document.querySelectorAll('.roadone-angle-btn');
+
+  if (!slider || !track) return;
+
+  const cards = track.querySelectorAll('.roadone-card');
+  const totalSlides = cards.length;
+  if (totalSlides === 0) return;
+
+  let currentIndex = 0;
+  let autoSlideTimer = null;
+  let currentAngle = '45';
+
+  // Build pagination dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    cards.forEach((card, idx) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = `roadone-dot ${idx === 0 ? 'active' : ''}`;
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-label', `Ir al modelo ${card.getAttribute('data-model') || idx + 1}`);
+      dot.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
+      dot.addEventListener('click', () => {
+        goToSlide(idx);
+        restartAutoSlide();
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  const updateSliderPosition = () => {
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    cards.forEach((c, idx) => {
+      c.classList.toggle('active', idx === currentIndex);
+    });
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.roadone-dot');
+      dots.forEach((d, idx) => {
+        const isActive = idx === currentIndex;
+        d.classList.toggle('active', isActive);
+        d.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+    }
+  };
+
+  const goToSlide = (idx) => {
+    currentIndex = (idx + totalSlides) % totalSlides;
+    updateSliderPosition();
+  };
+
+  const nextSlide = () => {
+    goToSlide(currentIndex + 1);
+  };
+
+  const prevSlide = () => {
+    goToSlide(currentIndex - 1);
+  };
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      nextSlide();
+      restartAutoSlide();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      prevSlide();
+      restartAutoSlide();
+    });
+  }
+
+  // Angle Switcher (45° vs Frontal)
+  angleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const angle = btn.getAttribute('data-angle');
+      if (angle === currentAngle) return;
+
+      currentAngle = angle;
+      angleBtns.forEach(b => {
+        const isActive = b === btn;
+        b.classList.toggle('active', isActive);
+        b.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+      });
+
+      cards.forEach(card => {
+        const img45 = card.querySelector('.roadone-card__img--45');
+        const imgFrente = card.querySelector('.roadone-card__img--frente');
+        if (img45 && imgFrente) {
+          if (angle === 'frente') {
+            img45.style.display = 'none';
+            imgFrente.style.display = 'block';
+          } else {
+            img45.style.display = 'block';
+            imgFrente.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+
+  // Touch Swipe for Mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  slider.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    stopAutoSlide();
+  }, { passive: true });
+
+  slider.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+    startAutoSlide();
+  }, { passive: true });
+
+  // Auto Slide (every 4.5s)
+  const startAutoSlide = () => {
+    stopAutoSlide();
+    autoSlideTimer = setInterval(() => {
+      nextSlide();
+    }, 4500);
+  };
+
+  const stopAutoSlide = () => {
+    if (autoSlideTimer) {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
+    }
+  };
+
+  const restartAutoSlide = () => {
+    stopAutoSlide();
+    startAutoSlide();
+  };
+
+  const wrapper = slider.closest('.roadone-slider-wrapper') || slider;
+  wrapper.addEventListener('mouseenter', stopAutoSlide);
+  wrapper.addEventListener('mouseleave', startAutoSlide);
+
+  // Keyboard navigation
+  slider.setAttribute('tabindex', '0');
+  slider.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+      restartAutoSlide();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+      restartAutoSlide();
+    }
+  });
+
+  startAutoSlide();
 }

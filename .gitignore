@@ -1,12 +1,13 @@
-﻿# Vercel
+# Vercel
 .vercel
 .env.local
 .env*.local
 
-# Raw camera images
+# Raw camera images & local archive
 Web/assets/img/raw/
 **/assets/img/raw/
 *.dng
+recursos/
 
 # Logs & OS
 .DS_Store
