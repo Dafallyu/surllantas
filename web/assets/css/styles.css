@@ -1080,34 +1080,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .roadone-card__meta {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  margin-bottom: 0.85rem;
-}
-
-.roadone-card__badge {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-white);
-  letter-spacing: -0.01em;
+  justify-content: center;
+  margin-bottom: 0.95rem;
 }
 
 .roadone-card__size {
-  display: inline-block;
-  background: rgba(245, 179, 1, 0.15);
-  color: var(--color-amarillo);
-  padding: 0.15rem 0.65rem;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   font-weight: 800;
-  letter-spacing: 0.03em;
-}
-
-.roadone-card__use {
-  font-size: 0.82rem;
-  color: var(--text-white-muted);
+  color: var(--text-white);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .roadone-card__btn {

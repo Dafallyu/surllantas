@@ -307,7 +307,7 @@ function initRoadoneSlider() {
       dot.type = 'button';
       dot.className = `roadone-dot ${idx === 0 ? 'active' : ''}`;
       dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', `Ir al modelo ${card.getAttribute('data-model') || idx + 1}`);
+      dot.setAttribute('aria-label', `Ir a la medida ${card.getAttribute('data-size') || idx + 1}`);
       dot.setAttribute('aria-selected', idx === 0 ? 'true' : 'false');
       dot.addEventListener('click', () => {
         goToSlide(idx);
