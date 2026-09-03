@@ -790,10 +790,27 @@ h1, h2, h3, h4, h5, h6 {
   gap: 1.5rem;
 }
 
-.services-grid-6 {
+.services-grid-6,
+.features-grid--3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+}
+
+.features-grid--3 {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.features-grid--centered .feature-card {
+  text-align: center;
+  align-items: center;
+}
+
+.features-grid--centered .feature-card__icon {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (max-width: 1023px) {
