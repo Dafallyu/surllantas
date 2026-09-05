@@ -530,7 +530,9 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 5rem;
   display: flex;
   align-items: center;
-  background-color: var(--bg-dark-deep);
+  background: linear-gradient(135deg, rgba(11, 17, 32, 0.94) 0%, rgba(15, 23, 42, 0.88) 100%),
+              radial-gradient(circle at 85% 30%, rgba(211, 47, 47, 0.2) 0%, transparent 55%),
+              url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
   color: var(--text-white);
   overflow: hidden;
 }
@@ -1692,7 +1694,9 @@ h1, h2, h3, h4, h5, h6 {
 .page-header {
   padding-top: calc(var(--nav-height) + 4rem);
   padding-bottom: 4rem;
-  background-color: var(--bg-dark-deep);
+  background: linear-gradient(135deg, rgba(11, 17, 32, 0.94) 0%, rgba(15, 23, 42, 0.88) 100%),
+              radial-gradient(circle at 85% 30%, rgba(211, 47, 47, 0.2) 0%, transparent 55%),
+              url('https://images.unsplash.com/photo-1506521781263-d8422e82f27a?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
   color: var(--text-white);
   position: relative;
   overflow: hidden;
