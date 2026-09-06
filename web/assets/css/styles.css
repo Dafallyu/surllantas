@@ -786,6 +786,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .grid-4,
 .features-grid,
+.stats-grid,
 .categories-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -818,6 +819,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 1023px) {
   .grid-4,
   .features-grid,
+  .stats-grid,
   .categories-grid,
   .services-grid-6 {
     grid-template-columns: repeat(2, 1fr);
@@ -825,9 +827,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 640px) {
   .grid-4,
   .features-grid,
+  .stats-grid,
   .categories-grid,
   .services-grid-6 {
     grid-template-columns: 1fr;
@@ -1162,26 +1165,25 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-rojo);
 }
 
-/* Brand Logo Strip / Institutional Trust Cloud (Zero False Affordance) */
+/* ==========================================================================
+   TRUST CLOUD DE MARCAS (CERO FALSA AFFORDANCE)
+   ========================================================================== */
 .brand-strip-section {
-  margin-top: 4rem;
-  padding: 3rem 1.5rem;
+  padding: 3.5rem 1.5rem;
   background-color: var(--bg-surface);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
-  text-align: center;
 }
 
 .brand-strip-title {
   text-align: center;
   font-family: var(--font-heading);
-  font-size: 0.82rem;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--text-light);
-  margin-bottom: 2.25rem;
-  padding: 0 1rem;
-  font-weight: 700;
+  margin-bottom: 2.5rem;
 }
 
 .brand-strip-grid {
@@ -1189,106 +1191,55 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 2rem 2.5rem;
+  gap: 2.5rem 3rem;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 0.5rem;
 }
 
 .brand-logo-item {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  height: 42px;
-  padding: 0.25rem 0.75rem;
-  cursor: default;
-  user-select: none;
+  height: 40px;
   background: transparent;
   border: none;
   box-shadow: none;
-  transition: opacity var(--transition-normal);
+  cursor: default;
+  user-select: none;
 }
 
 .brand-logo-img {
-  height: 28px;
-  max-height: 28px;
-  width: auto;
+  max-height: 38px;
   max-width: 130px;
+  width: auto;
+  height: auto;
   object-fit: contain;
   filter: grayscale(100%);
-  opacity: 0.5;
-  transition: opacity var(--transition-normal), filter var(--transition-normal);
-  pointer-events: none;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
 
 .brand-logo-item:hover .brand-logo-img {
-  opacity: 0.85;
-  filter: grayscale(50%);
+  filter: grayscale(0%);
+  opacity: 0.95;
+  mix-blend-mode: multiply;
 }
 
-.brand-fallback {
-  font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 0.92rem;
-  letter-spacing: 0.08em;
-  color: var(--text-light);
-  opacity: 0.6;
-  text-transform: uppercase;
-  transition: opacity var(--transition-normal);
-}
-
-.brand-logo-item:hover .brand-fallback {
-  opacity: 0.9;
-}
-
-@media (max-width: 991px) {
+@media (max-width: 768px) {
+  .brand-strip-section {
+    padding: 2.5rem 1rem;
+  }
   .brand-strip-grid {
     gap: 1.5rem 2rem;
   }
-  .brand-logo-img {
-    height: 24px;
-    max-height: 24px;
-  }
-}
-
-@media (max-width: 767px) {
-  .brand-strip-section {
-    padding: 2.25rem 1rem;
-    margin-top: 3rem;
-  }
-
-  .brand-strip-title {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
-    line-height: 1.45;
-  }
-
-  .brand-strip-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem 0.75rem;
-    align-items: center;
-    width: 100%;
-    max-width: 500px;
-    padding: 0;
-  }
-
-  .brand-logo-item {
-    height: 36px;
-    padding: 0.25rem;
-  }
-
-  .brand-logo-img {
-    height: 22px;
-    max-height: 22px;
-    max-width: 100px;
-    opacity: 0.55;
-  }
+  .brand-logo-item { height: 32px; }
+  .brand-logo-img { max-height: 30px; max-width: 105px; }
 }
 
 @media (max-width: 576px) {
   .brand-strip-grid {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem 1rem;
   }
