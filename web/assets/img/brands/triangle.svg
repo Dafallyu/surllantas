@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 165 38" fill="none">
+  <!-- Triangle Tire Symbol -->
+  <g transform="translate(6, 8)" fill="currentColor">
+    <polygon points="11,0 22,19 0,19"/>
+    <polygon points="11,6 17,16 5,16" fill="#FFF"/>
+  </g>
+  <!-- TRIANGLE Wordmark -->
+  <text x="34" y="25" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="20" letter-spacing="0.06em" fill="currentColor">TRIANGLE</text>
+</svg>

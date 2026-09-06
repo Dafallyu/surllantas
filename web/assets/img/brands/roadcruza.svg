@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175 38" fill="none">
+  <!-- Roadcruza 4x4 Peak Emblem -->
+  <g transform="translate(6, 8)" fill="currentColor">
+    <polygon points="10,0 20,18 0,18"/>
+    <path d="M6 14l4-6 4 6z" fill="#FFF"/>
+  </g>
+  <!-- ROADCRUZA Wordmark -->
+  <text x="32" y="25" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-style="italic" font-size="20" letter-spacing="0.02em" fill="currentColor">ROADCRUZA</text>
+</svg>

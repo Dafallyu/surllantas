@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 38" fill="none">
+  <!-- Aeolus Wind / Mountain Emblem -->
+  <g transform="translate(6, 8)" fill="currentColor">
+    <circle cx="10" cy="10" r="10" stroke="currentColor" stroke-width="2.5" fill="none"/>
+    <path d="M4 14l6-8 6 8-3-2-3 4-3-4-3 2z"/>
+  </g>
+  <!-- AEOLUS Wordmark -->
+  <text x="32" y="25" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="21" letter-spacing="0.06em" fill="currentColor">AEOLUS</text>
+</svg>

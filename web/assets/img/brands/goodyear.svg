@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 38" fill="none">
+  <!-- Goodyear Winged Foot Symbol -->
+  <g transform="translate(6, 6) scale(0.65)" fill="currentColor">
+    <path d="M12 2C6.5 2 2 6.5 2 12c0 3.5 1.8 6.5 4.5 8.3L15 8l-3 4 7-6-2 5 7-5c-2 6-6.5 10-12 11.5 1.7.5 3.3.7 5 .7 5.5 0 10-4.5 10-10 0-4.8-3.4-8.8-8-9.8L21 2l-6 3 2-3h-5z"/>
+  </g>
+  <!-- GOODYEAR Wordmark in iconic heavy condensed italic -->
+  <text x="32" y="26" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-style="italic" font-size="22" letter-spacing="-0.02em" fill="currentColor">GOOD<tspan letter-spacing="0.05em">YEAR</tspan></text>
+</svg>

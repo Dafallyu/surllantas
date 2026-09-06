@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 38" fill="none">
+  <!-- Aufine Dynamic Hexagon -->
+  <g transform="translate(6, 8)" fill="currentColor">
+    <polygon points="10,0 20,5 20,15 10,20 0,15 0,5"/>
+    <circle cx="10" cy="10" r="4" fill="#FFF"/>
+  </g>
+  <!-- AUFINE Wordmark -->
+  <text x="32" y="25" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="21" letter-spacing="0.06em" fill="currentColor">AUFINE</text>
+</svg>

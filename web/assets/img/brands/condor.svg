@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 38" fill="none">
+  <!-- Condor Wings Graphic -->
+  <g transform="translate(6, 9)" fill="currentColor">
+    <path d="M12 0L0 12l8 4 4-8 4 8 8-4L12 0z"/>
+  </g>
+  <!-- CONDOR Wordmark -->
+  <text x="34" y="25" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="21" letter-spacing="0.08em" fill="currentColor">CONDOR</text>
+</svg>
