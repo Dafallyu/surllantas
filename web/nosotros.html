@@ -54,16 +54,37 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "AutoPartsStore",
-    "name": "Sur Llantas",
-    "image": [
-      "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
-      "https://surllantas.com.bo/assets/img/logo-sur-llantas.png"
-    ],
-    "logo": "https://surllantas.com.bo/assets/img/logo-sur-llantas.png",
-    "description": "Historia y trayectoria de Sur Llantas en Tarija, Bolivia desde 2001.",
-    "url": "https://surllantas.com.bo/nosotros",
-    "telephone": ["+591 72960725", "+591 68687118"]
+    "@graph": [
+      {
+        "@type": "AboutPage",
+        "@id": "https://surllantas.com.bo/nosotros#webpage",
+        "url": "https://surllantas.com.bo/nosotros",
+        "name": "Sur Llantas | Nosotros - Historia de Venta de Llantas en Tarija desde 2001",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
+          "contentUrl": "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
+          "width": 640,
+          "height": 640,
+          "caption": "Sur Llantas Tarija - Logotipo e Identidad Oficial"
+        }
+      },
+      {
+        "@type": "AutoPartsStore",
+        "@id": "https://surllantas.com.bo/#organization",
+        "name": "Sur Llantas",
+        "image": "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://surllantas.com.bo/assets/img/logo-sur-llantas.png",
+          "width": 600,
+          "height": 180
+        },
+        "description": "Historia y trayectoria de Sur Llantas en Tarija, Bolivia desde 2001.",
+        "url": "https://surllantas.com.bo/nosotros",
+        "telephone": ["+591 72960725", "+591 68687118"]
+      }
+    ]
   }
   </script>
 </head>

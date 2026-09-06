@@ -55,51 +55,91 @@
     .brand-logo-item { display: flex; align-items: center; justify-content: center; width: 180px; height: 56px; }
   </style>
 
-  <!-- JSON-LD Structured Data Schema (LocalBusiness / AutoPartsStore) -->
+  <!-- JSON-LD Structured Data Schema (LocalBusiness / AutoPartsStore & WebPage) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "AutoPartsStore",
-    "name": "Sur Llantas",
-    "image": [
-      "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
-      "https://surllantas.com.bo/assets/img/logo-sur-llantas.png"
-    ],
-    "logo": "https://surllantas.com.bo/assets/img/logo-sur-llantas.png",
-    "description": "Empresa líder de venta de llantas en Tarija dedicada exclusivamente a la venta e importación de llantas de las mejores marcas del mercado.",
-    "url": "https://surllantas.com.bo",
-    "telephone": ["+591 72960725", "+591 68687118"],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Av. Froilán Tejerina esquina Regimiento Campos",
-      "addressLocality": "Tarija",
-      "addressRegion": "Tarija",
-      "addressCountry": "BO"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": -21.5121685,
-      "longitude": -64.7354856
-    },
-    "hasMap": "https://www.google.com/maps/place/Sur+Llantas/@-21.5121919,-64.7356868,21z/data=!4m6!3m5!1s0x94064932cfb70e77:0x7c5b359980b01ece!8m2!3d-21.5121685!4d-64.7354856!16s%2Fg%2F11pyr9pqn7",
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "08:00",
-        "closes": "12:40"
+        "@type": "WebSite",
+        "@id": "https://surllantas.com.bo/#website",
+        "url": "https://surllantas.com.bo/",
+        "name": "Sur Llantas Tarija",
+        "publisher": {
+          "@id": "https://surllantas.com.bo/#organization"
+        }
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-        "opens": "13:30",
-        "closes": "20:00"
+        "@type": "WebPage",
+        "@id": "https://surllantas.com.bo/#webpage",
+        "url": "https://surllantas.com.bo/",
+        "name": "Sur Llantas | Venta de Llantas en Tarija desde 2001",
+        "isPartOf": {
+          "@id": "https://surllantas.com.bo/#website"
+        },
+        "about": {
+          "@id": "https://surllantas.com.bo/#organization"
+        },
+        "description": "Sur Llantas en Tarija, Bolivia. Más de 25 años dedicados exclusivamente a la venta e importación de llantas para autos, camionetas 4x4, camiones (marca Roadone) y maquinaria.",
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "@id": "https://surllantas.com.bo/#primaryimage",
+          "url": "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
+          "contentUrl": "https://surllantas.com.bo/assets/img/og-surllantas.jpg",
+          "width": 640,
+          "height": 640,
+          "caption": "Sur Llantas Tarija - Logotipo e Identidad Oficial"
+        }
+      },
+      {
+        "@type": "AutoPartsStore",
+        "@id": "https://surllantas.com.bo/#organization",
+        "name": "Sur Llantas",
+        "image": {
+          "@id": "https://surllantas.com.bo/#primaryimage"
+        },
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://surllantas.com.bo/assets/img/logo-sur-llantas.png",
+          "width": 600,
+          "height": 180
+        },
+        "description": "Empresa líder de venta de llantas en Tarija dedicada exclusivamente a la venta e importación de llantas de las mejores marcas del mercado.",
+        "url": "https://surllantas.com.bo",
+        "telephone": ["+591 72960725", "+591 68687118"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Froilán Tejerina esquina Regimiento Campos",
+          "addressLocality": "Tarija",
+          "addressRegion": "Tarija",
+          "addressCountry": "BO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -21.5121685,
+          "longitude": -64.7354856
+        },
+        "hasMap": "https://www.google.com/maps/place/Sur+Llantas/@-21.5121919,-64.7356868,21z/data=!4m6!3m5!1s0x94064932cfb70e77:0x7c5b359980b01ece!8m2!3d-21.5121685!4d-64.7354856!16s%2Fg%2F11pyr9pqn7",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "08:00",
+            "closes": "12:40"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "13:30",
+            "closes": "20:00"
+          }
+        ],
+        "priceRange": "$$",
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=100077579211868",
+          "https://www.tiktok.com/@surllantas.tarija"
+        ]
       }
-    ],
-    "priceRange": "$$",
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=100077579211868",
-      "https://www.tiktok.com/@surllantas.tarija"
     ]
   }
   </script>
@@ -270,7 +310,7 @@
         <!-- Automóvil -->
         <div class="category-card reveal">
           <div class="category-card__media">
-            <img src="https://images.unsplash.com/photo-1578844251758-2f71da64c96f?q=80&w=800&auto=format&fit=crop" alt="Llantas para automóvil en Tarija" class="category-card__img" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800&auto=format&fit=crop" alt="Llantas para automóvil, sedán y hatchback en Tarija" class="category-card__img" loading="lazy">
           </div>
           <div class="category-card__body">
             <div>
