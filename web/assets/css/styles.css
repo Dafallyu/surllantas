@@ -1248,8 +1248,8 @@ h1, h2, h3, h4, h5, h6 {
 .section-quote-bar {
   position: relative;
   z-index: 15;
-  margin-top: -3.5rem;
-  margin-bottom: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
   padding: 0;
 }
 
@@ -3351,10 +3351,64 @@ h1, h2, h3, h4, h5, h6 {
   z-index: -1;
 }
 
+/* --------------------------------------------------------------------------
+   0.1. LUXURY AUTOMOTIVE ENTRANCE ANIMATIONS (PAGE BOOT SEQUENCE)
+   -------------------------------------------------------------------------- */
+@keyframes eyebrowSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-16px);
+    letter-spacing: 0.45em;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    letter-spacing: 0.35em;
+  }
+}
+
+@keyframes taglineReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.95);
+    filter: blur(10px);
+  }
+  50% {
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1.0);
+  }
+}
+
+@keyframes subFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 0.85;
+    transform: translateY(0);
+  }
+}
+
+@keyframes navbarEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .video-takeover__eyebrow {
   display: flex;
   align-items: center;
   gap: 1.25rem;
+  animation: eyebrowSlideDown 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
 }
 
 .video-takeover__eyebrow-line {
@@ -3391,6 +3445,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.9));
+  animation: taglineReveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s backwards;
 }
 
 .video-takeover__tagline span {
@@ -3409,6 +3464,11 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 680px;
   line-height: 1.6;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+  animation: subFadeUp 1.0s cubic-bezier(0.16, 1, 0.3, 1) 0.45s backwards;
+}
+
+.navbar--over-video {
+  animation: navbarEntrance 0.75s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
 .video-takeover__scroll-cue {
@@ -3525,5 +3585,13 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-reduced-motion: reduce) {
   .video-takeover {
     will-change: auto;
+  }
+  .video-takeover__eyebrow,
+  .video-takeover__tagline,
+  .video-takeover__sub,
+  .navbar--over-video {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

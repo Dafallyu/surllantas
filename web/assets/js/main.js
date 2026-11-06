@@ -61,6 +61,7 @@ class CinematicTakeoverEngine {
 
   initStreaks() {
     this.particles = [];
+    this.speed = 3.2; // Cinematic entrance launch burst
     for (let i = 0; i < this.numStreaks; i++) {
       this.particles.push({
         x: (Math.random() - 0.5) * 2.2,
@@ -69,6 +70,32 @@ class CinematicTakeoverEngine {
         color: Math.random() > 0.4 ? 'rgba(0, 102, 255, ' : 'rgba(211, 47, 47, ',
         speed: Math.random() * 8 + 14
       });
+    }
+
+    // Smoothly decelerate launch burst into steady cruising speed
+    const startT = performance.now();
+    const duration = 1400;
+    const burstSpeed = 3.2;
+    const cruiseSpeed = 1.0;
+    const decel = (now) => {
+      const elapsed = now - startT;
+      if (elapsed < duration) {
+        const t = elapsed / duration;
+        const ease = 1 - Math.pow(1 - t, 3);
+        if (typeof window !== 'undefined' && window.scrollY < 20) {
+          this.speed = burstSpeed - (burstSpeed - cruiseSpeed) * ease;
+        }
+        if (typeof requestAnimationFrame !== 'undefined') {
+          requestAnimationFrame(decel);
+        }
+      } else {
+        if (typeof window !== 'undefined' && window.scrollY < 20) {
+          this.speed = cruiseSpeed;
+        }
+      }
+    };
+    if (typeof requestAnimationFrame !== 'undefined') {
+      requestAnimationFrame(decel);
     }
   }
 
@@ -1363,15 +1390,15 @@ function initCinematicScrollEngine() {
 
   const isMobile = window.innerWidth < 992;
 
-  // 4. Create Master Timeline with ScrollTrigger Pinning on Desktop
+  // 4. Create Master Timeline with Smooth Scrubbed ScrollTrigger (Fluid unpinned flow prevents section collisions)
   const masterTimeline = gsap.timeline({
     scrollTrigger: {
       id: 'cinematic-stage',
       trigger: stage,
-      start: isMobile ? 'top 80%' : 'top top',
-      end: isMobile ? 'bottom 20%' : '+=130%',
+      start: 'top 75%',
+      end: 'bottom 20%',
       scrub: 0.8,
-      pin: isMobile ? false : viewport,
+      pin: false,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         const p = self.progress;
