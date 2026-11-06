@@ -1419,13 +1419,19 @@ function initCinematicScrollEngine() {
   });
 
   // Linear unblur and awakening from 0.00 to 0.25 (Feature F6, test F6-T1-2..4)
-  masterTimeline.to(typography, {
+  masterTimeline.fromTo(typography, {
+    filter: 'blur(14px)',
+    opacity: 0.15,
+    y: 24,
+    scale: 1.05
+  }, {
     filter: 'blur(0px)',
     opacity: 1.0,
     y: 0,
     scale: 1.0,
     ease: 'none',
-    duration: 0.25
+    duration: 0.25,
+    immediateRender: false
   }, 0.00);
 
   // Focus settling transition at 0.25 to 0.33
@@ -1447,16 +1453,22 @@ function initCinematicScrollEngine() {
     gsap.set(tire3DWrapper, { rotateY: 0, rotateX: 0, scale: 0.96 });
 
     // Morph: Frente fades out, 45 fades in inversely (Feature F7, tests F7-T1-4..5)
-    masterTimeline.to(tireFrente, {
+    masterTimeline.fromTo(tireFrente, {
+      opacity: 1
+    }, {
       opacity: 0,
       ease: 'none',
-      duration: 0.30
+      duration: 0.30,
+      immediateRender: false
     }, 0.25);
 
-    masterTimeline.to(tire45, {
+    masterTimeline.fromTo(tire45, {
+      opacity: 0
+    }, {
       opacity: 1,
       ease: 'none',
-      duration: 0.30
+      duration: 0.30,
+      immediateRender: false
     }, 0.25);
 
     // 3D Perspective Rotation (Feature F7)
@@ -1559,6 +1571,20 @@ function initCinematicScrollEngine() {
         }
       }, { passive: true });
     }
+  }
+
+  // Ensure ScrollTrigger computes exact pixel positions once assets & fonts finish loading
+  window.addEventListener('load', () => {
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => {
+      if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+      }
+    });
   }
 
   return masterTimeline;

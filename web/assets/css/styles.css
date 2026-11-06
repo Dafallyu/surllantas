@@ -689,15 +689,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tire-morph-img--frente {
-  opacity: 0;
+  opacity: 1;
   z-index: 1;
-  transition: opacity 0.4s ease;
 }
 
 .tire-morph-img--45 {
-  opacity: 1;
+  opacity: 0;
   z-index: 2;
-  transition: opacity 0.4s ease;
 }
 
 /* Ground Contact Shadow (Feature F8) */
