@@ -156,11 +156,33 @@
 </head>
 <body>
 
+  <!-- VIDEO TAKEOVER — Cinematic Intro Section -->
+  <section id="video-takeover" class="video-takeover" aria-label="Introducción cinemática SurLlantas">
+    <canvas id="video-canvas" class="video-takeover__canvas" aria-hidden="true"></canvas>
+    <video id="takeover-video" class="video-takeover__video" autoplay muted loop playsinline preload="none" data-src="assets/video/hero-roadone-loop.mp4"></video>
+    <div class="video-takeover__overlay">
+      <div class="video-takeover__center">
+        <div class="video-takeover__eyebrow">
+          <span class="video-takeover__eyebrow-line" aria-hidden="true"></span>
+          <span class="video-takeover__eyebrow-text">TARIJA &middot; BOLIVIA &middot; DESDE 2001</span>
+          <span class="video-takeover__eyebrow-line" aria-hidden="true"></span>
+        </div>
+        <h1 class="video-takeover__tagline">
+          SUR <span>LLANTAS</span>
+        </h1>
+        <p class="video-takeover__sub">
+          Importación directa y venta especializada de llantas para todo terreno, flotas y uso pesado
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- NAVBAR (SHARED ACROSS ALL PAGES) -->
   <header class="navbar">
     <div class="container navbar__container">
       <a href="index.html" class="navbar__logo">
-        <img src="assets/img/logo-sur-llantas.png" alt="Sur Llantas Tarija - Venta de Llantas" class="navbar__logo-img">
+        <img src="assets/img/logo-sur-llantas-white.png" alt="Sur Llantas Tarija - Venta de Llantas" class="navbar__logo-img navbar__logo-img--white">
+        <img src="assets/img/logo-sur-llantas.png" alt="Sur Llantas Tarija - Venta de Llantas" class="navbar__logo-img navbar__logo-img--dark">
       </a>
 
       <nav class="navbar__nav">
@@ -190,58 +212,225 @@
   <!-- MAIN CONTENT CONTAINER (SEMANTIC & ACCESSIBLE) -->
   <main id="main-content">
 
-  <!-- HERO SECTION -->
-  <section class="hero">
-    <div class="hero__overlay"></div>
-    <div class="container hero__content reveal">
-      <div class="badge badge--red hero__badge">
-        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
-        </svg>
-        Más de 25 Años en Tarija (Desde 2001)
-      </div>
+  <!-- CINEMATIC HERO SCROLL TRACK (350vh virtual track for 4-phase sequence) -->
+  <div class="cinematic-hero-stage" id="heroStage">
+    <!-- HERO SECTION (Preserves exact class="hero" for F1-T1-2) -->
+    <section class="hero">
+      <div class="hero__overlay"></div>
+      <canvas id="atmospheric-overlay" class="atmospheric-overlay" aria-hidden="true"></canvas>
 
-      <h1 class="heading-xl hero__title">
-        Más de 25 años vendiendo <span style="color: var(--color-rojo-luminoso);">confianza sobre ruedas</span>
-      </h1>
+      <!-- Pinned Viewport Container (100vh) -->
+      <div class="cinematic-viewport">
+        <!-- PHASE 01: Typographic Awakening Stage -->
+        <div class="container hero__content reveal cinematic-hero__typography" id="heroTypography">
+          <div class="badge badge--red hero__badge">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+            </svg>
+            Más de 25 Años en Tarija (Desde 2001)
+          </div>
 
-      <p class="hero__subtitle">
-        <strong>Sur Llantas en Tarija, Bolivia</strong>. Más de 25 años dedicados exclusivamente a la <strong>venta e importación de llantas</strong> para autos, camionetas 4x4, camiones (marca Roadone) y maquinaria con garantía y asesoramiento directo.
-      </p>
+          <h2 class="heading-xl hero__title">
+            Más de 25 años vendiendo <span style="color: var(--color-rojo-luminoso);">confianza sobre ruedas</span>
+          </h2>
 
-      <div class="hero__actions">
-        <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--primary btn--lg" aria-label="Consultar disponibilidad por WhatsApp">
-          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
-          </svg>
-          Consultar disponibilidad
-        </a>
-        <a href="#categorias" class="btn btn--outline-white btn--lg">
-          Ver Tipos de Vehículo
-        </a>
-      </div>
+          <p class="hero__subtitle">
+            <strong>Sur Llantas en Tarija, Bolivia</strong>. Más de 25 años dedicados exclusivamente a la <strong>venta e importación de llantas</strong> para autos, camionetas 4x4, transporte pesado y maquinaria con garantía y asesoramiento directo.
+          </p>
 
-      <div class="hero__features">
-        <div class="hero-feat">
-          <div class="hero-feat__icon">✓</div>
-          <div class="hero-feat__text">Venta 100% Especializada</div>
+          <div class="hero__actions">
+            <a href="https://wa.me/59172960725?text=Hola,%20quiero%20consultar%20disponibilidad%20de%20llantas" target="_blank" class="btn btn--primary btn--lg" aria-label="Consultar disponibilidad por WhatsApp">
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.031 2c-5.514 0-9.999 4.486-9.999 10 0 1.8.473 3.557 1.371 5.097L2 22l4.996-1.332C8.473 21.536 10.222 22 12.031 22c5.514 0 10-4.486 10-10s-4.486-10-10-10z"/>
+              </svg>
+              Consultar disponibilidad
+            </a>
+            <a href="#categorias" class="btn btn--outline-white btn--lg">
+              Ver Tipos de Vehículo
+            </a>
+          </div>
+
+          <div class="hero__features">
+            <div class="hero-feat">
+              <div class="hero-feat__icon">✓</div>
+              <div class="hero-feat__text">Venta 100% Especializada</div>
+            </div>
+            <div class="hero-feat">
+              <div class="hero-feat__icon">✓</div>
+              <div class="hero-feat__text">Stock Inmediato en Tarija</div>
+            </div>
+            <div class="hero-feat">
+              <div class="hero-feat__icon">✓</div>
+              <div class="hero-feat__text">Precios Competitivos Directos</div>
+            </div>
+          </div>
         </div>
-        <div class="hero-feat">
-          <div class="hero-feat__icon">✓</div>
-          <div class="hero-feat__text">Stock Inmediato en Tarija</div>
+
+        <!-- PHASE 02, 03 & 04: Tire Stage Reservation (3D Showcase, 3D Wrapper, Contact Shadow, Hotspots) -->
+        <div class="cinematic-tire-stage" id="cinematicTireStage" aria-label="Inspección Técnica 3D de Llanta Comercial">
+          <!-- Studio lighting backdrops (luxury dark atmosphere) -->
+          <div class="tire-stage__lighting" aria-hidden="true"></div>
+
+          <!-- Contact Shadow (Feature F8: Affine Matrix Deformation) -->
+          <div class="tire-contact-shadow" id="tireContactShadow" aria-hidden="true"></div>
+
+          <!-- 3D Perspective Wrapper (Feature F7: Perspective Rotation) -->
+          <div class="tire-3d-wrapper" id="tire3DWrapper">
+            <!-- Dual-WebP Morph Container -->
+            <div class="tire-morph-container" id="tireMorphContainer">
+              <img 
+                src="assets/img/productos/roadone-hd55-frente.webp" 
+                alt="Llanta comercial de alto rendimiento vista frontal" 
+                class="tire-morph-img tire-morph-img--frente" 
+                id="tireImgFrente"
+                width="1000"
+                height="1000"
+                loading="eager"
+                fetchpriority="high"
+              >
+              <img 
+                src="assets/img/productos/roadone-hd55-45.webp" 
+                alt="Llanta comercial de alto rendimiento vista 45 grados" 
+                class="tire-morph-img tire-morph-img--45" 
+                id="tireImg45"
+                width="1000"
+                height="1000"
+                loading="eager"
+              >
+            </div>
+
+            <!-- Telemetry Hotspots Layer (Phase 03 — Features F9 & F10) -->
+            <div class="telemetry-layer" id="telemetryLayer" aria-label="Telemetría e inspección técnica de alta resistencia">
+              
+              <!-- Hotspot 1: Banda de rodadura 16.5mm (Top-Left) -->
+              <div class="telemetry-hotspot-wrapper" style="left: 35%; top: 25%;">
+                <button 
+                  type="button" 
+                  class="telemetry-hotspot" 
+                  id="hotspot-tread" 
+                  data-hotspot="tread"
+                  aria-label="Inspeccionar: Banda de rodadura 16.5mm" 
+                  aria-expanded="false" 
+                  aria-controls="card-tread"
+                >
+                  <svg class="telemetry-hotspot__svg" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true">
+                    <circle class="hotspot-ring hotspot-ring--outer" cx="22" cy="22" r="18" />
+                    <circle class="hotspot-ring hotspot-ring--mid" cx="22" cy="22" r="11" />
+                    <circle class="hotspot-core" cx="22" cy="22" r="5" />
+                    <line class="hotspot-tick" x1="22" y1="4" x2="22" y2="8" />
+                    <line class="hotspot-tick" x1="22" y1="36" x2="22" y2="40" />
+                    <line class="hotspot-tick" x1="4" y1="22" x2="8" y2="22" />
+                    <line class="hotspot-tick" x1="36" y1="22" x2="40" y2="22" />
+                  </svg>
+                  <span class="telemetry-hotspot__beacon"></span>
+                  <span class="telemetry-hotspot__label">Banda 16.5mm</span>
+                </button>
+
+                <div class="telemetry-card" id="card-tread" role="region" aria-label="Detalles de Banda de rodadura">
+                  <button type="button" class="telemetry-card__close" aria-label="Cerrar telemetría de banda">&times;</button>
+                  <div class="telemetry-card__badge">BANDA DE RODADURA</div>
+                  <h3 class="telemetry-card__title">Banda de rodadura 16.5mm</h3>
+                  <div class="telemetry-card__metric">
+                    <span class="telemetry-card__metric-val">+35,000 km</span>
+                    <span class="telemetry-card__metric-lbl">Vida Útil Estimada</span>
+                  </div>
+                  <p class="telemetry-card__desc">
+                    Profundidad superior de 16.5mm con sipes tridimensionales y canales de evacuación rápida que maximizan el kilometraje y evitan el desgaste irregular.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Hotspot 2: Carcasa de acero 4 capas (Mid-Right) -->
+              <div class="telemetry-hotspot-wrapper" style="left: 65%; top: 55%;">
+                <button 
+                  type="button" 
+                  class="telemetry-hotspot" 
+                  id="hotspot-casing" 
+                  data-hotspot="casing"
+                  aria-label="Inspeccionar: Carcasa de acero 4 capas" 
+                  aria-expanded="false" 
+                  aria-controls="card-casing"
+                >
+                  <svg class="telemetry-hotspot__svg" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true">
+                    <circle class="hotspot-ring hotspot-ring--outer" cx="22" cy="22" r="18" />
+                    <circle class="hotspot-ring hotspot-ring--mid" cx="22" cy="22" r="11" />
+                    <circle class="hotspot-core" cx="22" cy="22" r="5" />
+                    <line class="hotspot-tick" x1="22" y1="4" x2="22" y2="8" />
+                    <line class="hotspot-tick" x1="22" y1="36" x2="22" y2="40" />
+                    <line class="hotspot-tick" x1="4" y1="22" x2="8" y2="22" />
+                    <line class="hotspot-tick" x1="36" y1="22" x2="40" y2="22" />
+                  </svg>
+                  <span class="telemetry-hotspot__beacon"></span>
+                  <span class="telemetry-hotspot__label">Carcasa 4 Capas</span>
+                </button>
+
+                <div class="telemetry-card" id="card-casing" role="region" aria-label="Detalles de Carcasa de acero">
+                  <button type="button" class="telemetry-card__close" aria-label="Cerrar telemetría de carcasa">&times;</button>
+                  <div class="telemetry-card__badge">ESTRUCTURA Y CARCASA</div>
+                  <h3 class="telemetry-card__title">Carcasa de acero 4 capas</h3>
+                  <div class="telemetry-card__metric">
+                    <span class="telemetry-card__metric-val">4×</span>
+                    <span class="telemetry-card__metric-lbl">Protección Antipinchazos</span>
+                  </div>
+                  <p class="telemetry-card__desc">
+                    Cinturones de acero de alta tensión que blindan la banda contra impactos y cortes en caminos difíciles, apta para múltiples reencauches certificados.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Hotspot 3: Eficiencia de rodadura (Bottom-Center) -->
+              <div class="telemetry-hotspot-wrapper" style="left: 50%; top: 80%;">
+                <button 
+                  type="button" 
+                  class="telemetry-hotspot" 
+                  id="hotspot-efficiency" 
+                  data-hotspot="efficiency"
+                  aria-label="Inspeccionar: Eficiencia de rodadura" 
+                  aria-expanded="false" 
+                  aria-controls="card-efficiency"
+                >
+                  <svg class="telemetry-hotspot__svg" viewBox="0 0 44 44" width="44" height="44" aria-hidden="true">
+                    <circle class="hotspot-ring hotspot-ring--outer" cx="22" cy="22" r="18" />
+                    <circle class="hotspot-ring hotspot-ring--mid" cx="22" cy="22" r="11" />
+                    <circle class="hotspot-core" cx="22" cy="22" r="5" />
+                    <line class="hotspot-tick" x1="22" y1="4" x2="22" y2="8" />
+                    <line class="hotspot-tick" x1="22" y1="36" x2="22" y2="40" />
+                    <line class="hotspot-tick" x1="4" y1="22" x2="8" y2="22" />
+                    <line class="hotspot-tick" x1="36" y1="22" x2="40" y2="22" />
+                  </svg>
+                  <span class="telemetry-hotspot__beacon"></span>
+                  <span class="telemetry-hotspot__label">Eficiencia Diésel</span>
+                </button>
+
+                <div class="telemetry-card" id="card-efficiency" role="region" aria-label="Detalles de Eficiencia de rodadura">
+                  <button type="button" class="telemetry-card__close" aria-label="Cerrar telemetría de eficiencia">&times;</button>
+                  <div class="telemetry-card__badge">EFICIENCIA ENERGÉTICA</div>
+                  <h3 class="telemetry-card__title">Eficiencia de rodadura</h3>
+                  <div class="telemetry-card__metric">
+                    <span class="telemetry-card__metric-val">-4.5%</span>
+                    <span class="telemetry-card__metric-lbl">Consumo Diésel</span>
+                  </div>
+                  <p class="telemetry-card__desc">
+                    Compuesto avanzado de baja resistencia al rodamiento que reduce la pérdida de energía por fricción, optimizando el rendimiento de combustible en flotas.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
-        <div class="hero-feat">
-          <div class="hero-feat__icon">✓</div>
-          <div class="hero-feat__text">Precios Competitivos Directos</div>
-        </div>
+
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- SELECTOR RÁPIDO DE MEDIDAS (COTIZADOR EXPRESS A WHATSAPP) -->
   <section class="section-quote-bar" aria-label="Cotizador rápido de llantas por medida">
     <div class="container">
-      <div class="quote-bar-card reveal">
+      <div class="quote-bar-container">
+        <!-- Reserved docking bay for Phase 4 tire landing (guarantees CLS = 0) -->
+        <div class="quote-tire-dock" id="quoteTireDock" aria-hidden="true"></div>
+        <div class="quote-bar-card reveal">
         <div class="quote-bar-header">
           <div class="badge badge--red quote-bar-header__badge">Cotización Inmediata</div>
           <h2 class="quote-bar-header__title">¿Buscas una medida específica?</h2>
@@ -300,6 +489,7 @@
           </div>
         </form>
       </div>
+      </div>
     </div>
   </section>
 
@@ -318,7 +508,7 @@
 
       <div class="grid-4">
         <!-- Automóvil -->
-        <div class="category-card reveal">
+        <div class="category-card reveal" tabindex="0">
           <div class="category-card__media">
             <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=800&auto=format&fit=crop" alt="Llantas para automóvil, sedán y hatchback en Tarija" class="category-card__img" loading="lazy">
           </div>
@@ -336,7 +526,7 @@
         </div>
 
         <!-- Camioneta / SUV -->
-        <div class="category-card reveal">
+        <div class="category-card reveal" tabindex="0">
           <div class="category-card__media">
             <img src="https://images.unsplash.com/photo-1559416523-140ddc3d238c?q=80&w=800&auto=format&fit=crop" alt="Llantas para camioneta 4x4, pick-up y SUV en Tarija" class="category-card__img" loading="lazy">
           </div>
@@ -354,7 +544,7 @@
         </div>
 
         <!-- Camión -->
-        <div class="category-card reveal">
+        <div class="category-card reveal category-card--featured" tabindex="0" data-featured="true">
           <div class="category-card__media">
             <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop" alt="Llantas para camión y transporte de carga pesada" class="category-card__img" loading="lazy">
           </div>
@@ -372,7 +562,7 @@
         </div>
 
         <!-- Moto -->
-        <div class="category-card reveal">
+        <div class="category-card reveal" tabindex="0">
           <div class="category-card__media">
             <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=800&auto=format&fit=crop" alt="Llantas para motocicleta en Tarija" class="category-card__img" loading="lazy">
           </div>
@@ -768,7 +958,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-brand__logo">
-            <img src="assets/img/logo-sur-llantas.png" alt="Sur Llantas Tarija" class="footer-brand__logo-img">
+            <img src="assets/img/logo-sur-llantas-white.png" alt="Sur Llantas Tarija" class="footer-brand__logo-img">
           </div>
           <p class="footer-brand__desc">
             Empresa dedicada exclusivamente a la venta e importación de neumáticos en Tarija, Bolivia. Más de 25 años entregando calidad y confianza.
@@ -871,6 +1061,9 @@
     </button>
   </div>
 
+  <!-- GSAP 3.12.5 Core & ScrollTrigger Plugin (Feature F5) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="assets/js/main.js?v=2.3"></script>
 </body>
 </html>

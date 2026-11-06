@@ -14,3 +14,5 @@ recursos/
 Thumbs.db
 *.log
 .vercel
+__pycache__/
+test_bin.png
