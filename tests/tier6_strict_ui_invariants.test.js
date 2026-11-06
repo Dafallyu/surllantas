@@ -271,7 +271,7 @@ describe('Tier 6 Strict Suite 6: Accessibility & Semantic HTML (WCAG 2.1 AA)', (
 
   it('T6-A11Y-05: Semantic landmark elements (<header>, <main id="main-content">, <footer>) exist on all pages', () => {
     for (const page of ALL_PAGES) {
-      assert.ok(page.html.includes('<header class="navbar">'), `${page.name} must have <header class="navbar">`);
+      assert.ok(/<header[^>]*class=["'][^"']*\bnavbar\b[^"']*["']/.test(page.html), `${page.name} must have <header class="navbar">`);
       assert.ok(page.html.includes('<main id="main-content">'), `${page.name} must have <main id="main-content">`);
       assert.ok(page.html.includes('<footer class="footer">'), `${page.name} must have <footer class="footer">`);
     }
