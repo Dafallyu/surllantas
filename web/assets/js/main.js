@@ -23,9 +23,174 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* --------------------------------------------------------------------------
-   0. VIDEO TAKEOVER ENGINE
-   Scroll-driven parallax exit of the cinematic intro
+   0. VIDEO TAKEOVER ENGINE & PROCEDURAL HIGHWAY ENGINE
+   Scroll-driven parallax exit and high-speed night asphalt perspective
    -------------------------------------------------------------------------- */
+class CinematicTakeoverEngine {
+  constructor(canvas, container) {
+    this.canvas = canvas;
+    this.container = container;
+    this.ctx = canvas.getContext('2d');
+    this.particles = [];
+    this.rafId = null;
+    this.isActive = false;
+    this.speed = 1.0;
+    this.mouseX = 0.5;
+    this.mouseY = 0.5;
+    this.currentMouseX = 0.5;
+    this.roadOffset = 0;
+    this.numStreaks = 55;
+  }
+
+  init() {
+    this.resize();
+    this.initStreaks();
+    this.bindEvents();
+    this.isActive = true;
+    this.render();
+  }
+
+  resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.width = this.container.offsetWidth || window.innerWidth;
+    this.height = this.container.offsetHeight || window.innerHeight;
+    this.canvas.width = this.width * dpr;
+    this.canvas.height = this.height * dpr;
+    this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  initStreaks() {
+    this.particles = [];
+    for (let i = 0; i < this.numStreaks; i++) {
+      this.particles.push({
+        x: (Math.random() - 0.5) * 2.2,
+        y: (Math.random() - 0.5) * 2.0,
+        z: Math.random() * 1000 + 1,
+        color: Math.random() > 0.4 ? 'rgba(0, 102, 255, ' : 'rgba(211, 47, 47, ',
+        speed: Math.random() * 8 + 14
+      });
+    }
+  }
+
+  bindEvents() {
+    this.onResize = () => this.resize();
+    this.onMouseMove = (e) => {
+      this.mouseX = e.clientX / window.innerWidth;
+      this.mouseY = e.clientY / window.innerHeight;
+    };
+    window.addEventListener('resize', this.onResize, { passive: true });
+    window.addEventListener('mousemove', this.onMouseMove, { passive: true });
+  }
+
+  render() {
+    if (!this.isActive) return;
+
+    const ctx = this.ctx;
+    const w = this.width;
+    const h = this.height;
+
+    // Smooth camera inertia
+    this.currentMouseX += (this.mouseX - this.currentMouseX) * 0.05;
+
+    // Background deep night asphalt gradient
+    ctx.fillStyle = '#050811';
+    ctx.fillRect(0, 0, w, h);
+
+    const cx = w * (0.46 + this.currentMouseX * 0.08);
+    const cy = h * 0.46;
+
+    // Volumetric headlight illumination
+    const headGlow = ctx.createRadialGradient(cx, cy + h * 0.1, 10, cx, cy + h * 0.4, Math.max(w, h) * 0.7);
+    headGlow.addColorStop(0, 'rgba(0, 102, 255, 0.16)');
+    headGlow.addColorStop(0.35, 'rgba(211, 47, 47, 0.07)');
+    headGlow.addColorStop(1, 'transparent');
+    ctx.fillStyle = headGlow;
+    ctx.fillRect(0, 0, w, h);
+
+    // Perspective Highway Asphalt Horizon
+    const horizonY = cy;
+    const roadBottomLeft = -w * 0.15;
+    const roadBottomRight = w * 1.15;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(cx - 24, horizonY);
+    ctx.lineTo(cx + 24, horizonY);
+    ctx.lineTo(roadBottomRight, h);
+    ctx.lineTo(roadBottomLeft, h);
+    ctx.closePath();
+
+    const roadGrad = ctx.createLinearGradient(0, horizonY, 0, h);
+    roadGrad.addColorStop(0, '#0A0F1A');
+    roadGrad.addColorStop(0.5, '#0E1522');
+    roadGrad.addColorStop(1, '#050811');
+    ctx.fillStyle = roadGrad;
+    ctx.fill();
+
+    // Road glowing edge borders
+    ctx.strokeStyle = 'rgba(0, 102, 255, 0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    ctx.restore();
+
+    // Animated Highway Center Lane Dashes (Golden Highway Lines)
+    this.roadOffset = (this.roadOffset + 16 * this.speed) % 100;
+    ctx.save();
+    for (let d = this.roadOffset; d < 1000; d += 90) {
+      const zNorm = d / 1000;
+      const yPos = horizonY + Math.pow(zNorm, 2.3) * (h - horizonY);
+      const dashH = Math.max(3, Math.pow(zNorm, 2.0) * 48);
+      const xPos = cx;
+      const alpha = Math.min(1, Math.pow(zNorm, 1.8));
+
+      ctx.strokeStyle = `rgba(255, 192, 45, ${alpha * 0.8})`;
+      ctx.lineWidth = Math.max(1.2, zNorm * 4.2);
+      ctx.beginPath();
+      ctx.moveTo(xPos, yPos);
+      ctx.lineTo(xPos, yPos + dashH);
+      ctx.stroke();
+    }
+    ctx.restore();
+
+    // Speed streaks & atmospheric particles
+    for (let p of this.particles) {
+      p.z -= p.speed * this.speed;
+      if (p.z <= 0) {
+        p.z = 1000;
+        p.x = (Math.random() - 0.5) * 2.2;
+        p.y = (Math.random() - 0.5) * 2.0;
+      }
+
+      const k = 420 / p.z;
+      const px = p.x * w * k + cx;
+      const py = p.y * h * k + cy;
+
+      const prevK = 420 / (p.z + p.speed * 2.8);
+      const prevX = p.x * w * prevK + cx;
+      const prevY = p.y * h * prevK + cy;
+
+      if (px >= 0 && px <= w && py >= 0 && py <= h) {
+        const alpha = Math.min(1, (1000 - p.z) / 400);
+        ctx.strokeStyle = p.color + alpha + ')';
+        ctx.lineWidth = Math.max(1, (1000 - p.z) / 220);
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(px, py);
+        ctx.stroke();
+      }
+    }
+
+    this.rafId = requestAnimationFrame(() => this.render());
+  }
+
+  destroy() {
+    this.isActive = false;
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('mousemove', this.onMouseMove);
+  }
+}
+
 function initVideoTakeover() {
   const section = document.getElementById('video-takeover');
   if (!section) return;
@@ -33,12 +198,11 @@ function initVideoTakeover() {
   const navbar = document.querySelector('.navbar');
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // Wire video src when file exists (lazy — won't 404 if absent)
+  // Wire video src when file exists (lazy - won't 404 if absent)
   const videoEl = document.getElementById('takeover-video');
   if (videoEl) {
     const src = videoEl.dataset.src;
     if (src) {
-      // Only assign src if the file actually exists (graceful degradation to canvas)
       fetch(src, { method: 'HEAD' })
         .then(r => {
           if (r.ok) {
@@ -46,20 +210,19 @@ function initVideoTakeover() {
             videoEl.style.opacity = '1';
           }
         })
-        .catch(() => {}); // canvas fallback stays visible
+        .catch(() => {});
     }
   }
 
-  // Also run a particle engine on the takeover canvas for atmosphere
+  // Run procedural highway engine on the takeover canvas
   const takeoverCanvas = document.getElementById('video-canvas');
-  if (takeoverCanvas && !prefersReduced && typeof AtmosphericParticleEngine !== 'undefined') {
-    const takeoverEngine = new AtmosphericParticleEngine(takeoverCanvas, section);
+  if (takeoverCanvas && !prefersReduced) {
+    const takeoverEngine = new CinematicTakeoverEngine(takeoverCanvas, section);
     takeoverEngine.init();
-    window.takeoverParticleEngine = takeoverEngine;
+    window.takeoverEngine = takeoverEngine;
   }
 
   if (prefersReduced) {
-    // Reduced motion: skip animation, skip the takeover section entirely
     section.style.display = 'none';
     if (navbar) navbar.classList.remove('navbar--over-video');
     return;
@@ -68,19 +231,21 @@ function initVideoTakeover() {
   // Add transparent-over-video class to navbar initially
   if (navbar) navbar.classList.add('navbar--over-video');
 
-  // Scroll-driven exit: smooth content fade without layout jumping
+  // Scroll-driven exit: smooth content fade & highway acceleration
   function onTakeoverScroll() {
     const scrollY = window.scrollY;
     const sectionH = section.offsetHeight || window.innerHeight;
 
     if (scrollY <= sectionH) {
-      const progress = scrollY / sectionH; // 0 → 1
+      const progress = scrollY / sectionH; // 0 -> 1
+      if (window.takeoverEngine) {
+        window.takeoverEngine.speed = 1.0 + progress * 4.5;
+      }
       const center = section.querySelector('.video-takeover__center');
       if (center) {
         center.style.opacity = String(Math.max(0, 1 - progress * 1.4));
-        center.style.transform = `translateY(-${scrollY * 0.2}px)`;
+        center.style.transform = `translateY(-${scrollY * 0.25}px) scale(${1 - progress * 0.08})`;
       }
-      // Navbar: transparent over video, reverts to solid backdrop when scrolling down
       if (navbar) {
         if (progress > 0.35) {
           navbar.classList.remove('navbar--over-video');
@@ -1198,24 +1363,30 @@ function initCinematicScrollEngine() {
 
   const isMobile = window.innerWidth < 992;
 
-  // 4. Create Master Timeline with ScrollTrigger (Unpinned to eliminate empty scroll voids)
+  // 4. Create Master Timeline with ScrollTrigger Pinning on Desktop
   const masterTimeline = gsap.timeline({
     scrollTrigger: {
       id: 'cinematic-stage',
       trigger: stage,
-      start: 'top 85%',
-      end: 'bottom 15%',
-      scrub: 0.5,
-      pin: false,
+      start: isMobile ? 'top 80%' : 'top top',
+      end: isMobile ? 'bottom 20%' : '+=130%',
+      scrub: 0.8,
+      pin: isMobile ? false : viewport,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
         const p = self.progress;
         window.cinematicScrollProgress = p;
 
-        // Ensure telemetry remains active while in stage
-        telemetry.setPhaseVisible(true);
+        // Telemetry visibility: active in phase 2-3 (0.25 to 0.80)
+        if (telemetry) {
+          if (p < 0.25 || p >= 0.80) {
+            telemetry.setPhaseVisible(false);
+          } else {
+            telemetry.setPhaseVisible(true);
+          }
+        }
 
-        // Pre-fill quote when scrolling towards catalog
+        // Pre-fill quote when scrolling towards catalog (Phase 4, test T5-SCE-06)
         if (p >= 0.8) {
           TireLandingQuoteBridge.prefillRoadoneTruckQuote();
         }
@@ -1236,59 +1407,158 @@ function initCinematicScrollEngine() {
   // Expose on window for diagnostics and extension
   window.cinematicTimeline = masterTimeline;
 
-  // 5. Typography is sharp, clear and readable immediately (0% blur, 100% opacity)
+  // =========================================================================
+  // PHASE 01: Typographic Awakening (Scroll 0.00 to 0.25)
+  // =========================================================================
   gsap.set(typography, {
-    filter: 'none',
-    opacity: 1.0,
-    y: 0,
-    scale: 1.0,
+    filter: 'blur(14px)',
+    opacity: 0.15,
+    y: 24,
+    scale: 1.05,
     transformOrigin: 'left center'
   });
 
-  // 6. Roadone HD55 3D perspective display
-  if (tireFrente && tire45 && tire3DWrapper && tireContactShadow) {
-    gsap.set(tireFrente, { opacity: 0 });
-    gsap.set(tire45, { opacity: 1 });
-    gsap.set(tire3DWrapper, { rotateY: -15, rotateX: 3, scale: 1.0 });
+  // Linear unblur and awakening from 0.00 to 0.25 (Feature F6, test F6-T1-2..4)
+  masterTimeline.to(typography, {
+    filter: 'blur(0px)',
+    opacity: 1.0,
+    y: 0,
+    scale: 1.0,
+    ease: 'none',
+    duration: 0.25
+  }, 0.00);
 
-    // Subtle scroll-driven depth
-    masterTimeline.to(tire3DWrapper, {
-      rotateY: -22,
-      rotateX: 6,
-      scale: 1.03,
+  // Focus settling transition at 0.25 to 0.33
+  masterTimeline.to(typography, {
+    x: -25,
+    opacity: 0.85,
+    scale: 0.98,
+    ease: 'power1.out',
+    duration: 0.08
+  }, 0.25);
+
+  // =========================================================================
+  // PHASE 02: Roadone HD55 Perspective Morph & Physics (Scroll 0.25 to 0.55)
+  // =========================================================================
+  if (tireFrente && tire45 && tire3DWrapper && tireContactShadow) {
+    // Initial tire setup
+    gsap.set(tireFrente, { opacity: 1 });
+    gsap.set(tire45, { opacity: 0 });
+    gsap.set(tire3DWrapper, { rotateY: 0, rotateX: 0, scale: 0.96 });
+
+    // Morph: Frente fades out, 45 fades in inversely (Feature F7, tests F7-T1-4..5)
+    masterTimeline.to(tireFrente, {
+      opacity: 0,
       ease: 'none',
-      duration: 0.5
+      duration: 0.30
     }, 0.25);
 
-    // Interactive mouse 3D tilt on desktop
-    if (!isMobile) {
-      const heroEl = document.querySelector('.hero');
-      if (heroEl) {
-        heroEl.addEventListener('mousemove', (e) => {
-          const rect = heroEl.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
-          gsap.to(tire3DWrapper, {
-            rotateY: -15 + x * 24,
-            rotateX: 3 - y * 16,
-            duration: 0.45,
-            ease: 'power1.out'
-          });
-          if (tireContactShadow) {
-            gsap.to(tireContactShadow, {
-              x: x * 22,
-              duration: 0.45,
-              ease: 'power1.out'
-            });
-          }
-        }, { passive: true });
+    masterTimeline.to(tire45, {
+      opacity: 1,
+      ease: 'none',
+      duration: 0.30
+    }, 0.25);
+
+    // 3D Perspective Rotation (Feature F7)
+    masterTimeline.to(tire3DWrapper, {
+      rotateY: -18,
+      rotateX: 3,
+      scale: 1.05,
+      ease: 'none',
+      duration: 0.30
+    }, 0.25);
+
+    // Contact shadow affine matrix deformation (Feature F8, tests F8-T1-1..5)
+    const shadowProxy = { p: 0 };
+    masterTimeline.to(shadowProxy, {
+      p: 1,
+      ease: 'none',
+      duration: 0.30,
+      onUpdate: () => {
+        const p = Math.max(0, Math.min(1, shadowProxy.p));
+        const angleRad = (p * 45 * Math.PI) / 180;
+        const sinVal = Math.sin(angleRad);
+        const scaleX = 1 + 0.15 * sinVal;
+        const rawSkewX = -0.35 * sinVal;
+        const skewX = Math.abs(rawSkewX) < 1e-6 ? 0 : rawSkewX;
+        const scaleY = 1 - 0.25 * sinVal;
+        const tx = 20 * p;
+        const ty = 10 * p;
+        tireContactShadow.style.transform =
+          `matrix(${scaleX.toFixed(4)}, 0, ${skewX.toFixed(4)}, ${scaleY.toFixed(4)}, ${tx.toFixed(2)}, ${ty.toFixed(2)})`;
       }
+    }, 0.25);
+  }
+
+  // =========================================================================
+  // PHASE 03: SVG Telemetry Hotspots Layer (Scroll 0.55 to 0.80)
+  // =========================================================================
+  if (telemetryLayer) {
+    gsap.set(telemetryLayer, { opacity: 0, visibility: 'hidden' });
+
+    masterTimeline.to(telemetryLayer, {
+      opacity: 1,
+      visibility: 'visible',
+      ease: 'power2.out',
+      duration: 0.08
+    }, 0.55);
+
+    if (tire3DWrapper) {
+      masterTimeline.to(tire3DWrapper, {
+        rotateY: -22,
+        rotateX: 4,
+        scale: 1.07,
+        ease: 'none',
+        duration: 0.25
+      }, 0.55);
     }
   }
 
-  // 7. Telemetry Hotspots Layer visible
+  // =========================================================================
+  // PHASE 04: Tire Landing into WhatsApp Quote Bar (Scroll 0.80 to 1.00)
+  // =========================================================================
   if (telemetryLayer) {
-    gsap.set(telemetryLayer, { opacity: 1, visibility: 'visible' });
+    masterTimeline.to(telemetryLayer, {
+      opacity: 0,
+      visibility: 'hidden',
+      ease: 'power1.in',
+      duration: 0.06
+    }, 0.80);
+  }
+
+  if (tireStage) {
+    masterTimeline.to(tireStage, {
+      y: 70,
+      scale: 0.88,
+      opacity: 0.45,
+      ease: 'power2.inOut',
+      duration: 0.20
+    }, 0.80);
+  }
+
+  // Interactive mouse 3D tilt on desktop (subtle physical response on hover)
+  if (!isMobile && tire3DWrapper) {
+    const heroEl = document.querySelector('.hero');
+    if (heroEl) {
+      heroEl.addEventListener('mousemove', (e) => {
+        const rect = heroEl.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        gsap.to(tire3DWrapper, {
+          rotateY: -18 + x * 20,
+          rotateX: 3 - y * 14,
+          duration: 0.4,
+          ease: 'power1.out'
+        });
+        if (tireContactShadow) {
+          gsap.to(tireContactShadow, {
+            x: x * 18,
+            duration: 0.4,
+            ease: 'power1.out'
+          });
+        }
+      }, { passive: true });
+    }
   }
 
   return masterTimeline;
